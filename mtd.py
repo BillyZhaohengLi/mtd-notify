@@ -1,16 +1,22 @@
 import requests
-from twilio.rest import Client
+import time
+from dateutil import parser
 
-key = "afc5ee1e717b4776ab74680fafbfc091P"
+toople_list = []
+key = "afc5ee1e717b4776ab74680fafbfc091"
 
 req = requests.get("https://developer.cumtd.com/api/v2.2/json/GetReroutes" +
                    "?key=" + key)
 data = req.json()
+current_date = time.strftime("%x")
 
 for reroute in data['reroutes']:
-	hello = "Reroute from " + reroute['start_date'] + " to " + reroute['end_date']
+    for bus in reroute['affected_routes']:
+        if parser.parse(reroute['start_date']) <= parser.parse(current_date) <= parser.parse(reroute['end_date']):
+            combined_name = bus['route_short_name'] + " " + bus['route_id']
+            color = bus['route_color']
+            toople = (combined_name, color)
+            toople_list.append(toople)
 
-print(hello)
-
-client = Client("AC52ebfb8b6d2f2dd11b83099afdf81701P", "34f4ddc1875e9c61e7b409286ce27b56P")
-client.messages.create(to="+14089405637P",from_="+14159692206P",body=hello)
+toople_list = list(set(toople_list))
+print(toople_list)
