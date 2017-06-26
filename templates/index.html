@@ -1,5 +1,34 @@
 <!doctype html>
-<title>MTD Reroutes</title>
-{% for key, value in data.items() %}
-  <h3>{{key}}: {{value}}</h3>
-{% endfor %}
+<head>
+  <title>MTD Reroutes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<center>
+<h1>MTD Reroutes on <script> var utc = new Date().toDateString(); document.write(utc); </script> </h1>
+<h4 style="padding-top: 1.1em;">Simple web app that lists all CUMTD buses with active reroutes in place. You can find the source code on <a href="https://github.com/vivekvaidya/mtd-notify"> GitHub</a>.
+<hr id="line">
+</center>
+
+<div class="container">
+ {% for key, value in data.items() %}
+  <h2 style="padding-top: 1.5em; color: #{{ key.split(',')[1] }};">{{key.split(",")[0]}}</h2>
+ {% for val in value %}
+  <div style="margin-bottom: -1em;" class="panel panel-default">
+    <div class="panel-body">
+      <h4>{{val}}</h4>
+  </div>
+</div>
+<br style="padding-bottom:1em;">
+  {% endfor %}
+  {% endfor %}
+</div>
+
+<center>
+<br>
+<h5> Built by Vivek Vaidya w/ data provided by CUMTD. Thanks for visiting! </h5>
+</center>

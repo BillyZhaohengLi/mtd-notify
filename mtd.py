@@ -5,7 +5,7 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-def not_flask():
+def reroute_info():
     toople_list = []
     key = "afc5ee1e717b4776ab74680fafbfc091"
 
@@ -60,7 +60,7 @@ def not_flask():
 
     reasons = dict()
     for item in toople_list:
-        key = item[0]
+        key = item[0] + "," + item[2]
         val = item[1]
         if(key in reasons):
             reasons[key].add(val)
@@ -72,7 +72,9 @@ def not_flask():
 
 @app.route('/')
 def hello():
-    data = not_flask()
+    data = reroute_info()
+    del data['9 Brown,825622']
+    print(data)
     return render_template('index.html', data=data)
 
 app.run()
