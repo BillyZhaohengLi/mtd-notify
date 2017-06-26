@@ -6,7 +6,6 @@ cryptography==1.9
 cycler==0.10.0
 enum34==1.1.6
 Flask==0.12.1
-functools32==3.2.3.post2
 gunicorn==19.7.1
 idna==2.5
 ipaddress==1.0.18
