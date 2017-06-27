@@ -1,1 +1,1 @@
-web: python3 mtd-notify/mtd.py
+web: python3 mtd.py
