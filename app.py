@@ -77,6 +77,7 @@ def hello():
     print(data)
     return render_template('index.html', data=data)
 
-app.run(port=5000)
+if __name__ == 'main':
+    app.run(port=5000)
 
 # print(toople_list)
